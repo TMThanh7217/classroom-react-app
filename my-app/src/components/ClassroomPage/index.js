@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PageHeader from '../PageHeader'
 import Classroom from '../Classroom'
-import classroom from '../mock'
 
 const ClassroomPage = () => {
     const [addClassOpen, setAddClassOpen] = useState(false);
+    const [classroomList, setClassroomList] = useState([]);
 
-    const handleAddClassOpen= () => {
+    const handleAddClassOpen = () => {
         setAddClassOpen(true);
     }
 
@@ -14,12 +14,25 @@ const ClassroomPage = () => {
         setAddClassOpen(false);
     }
 
-    let myClassroom = classroom;
-    console.log(myClassroom);
+    const listAllClassroomAPI = () => {
+        fetch('http://localhost:9000/classrooms')
+            .then(res => res.json())
+            .then(res => {
+                setClassroomList(res)
+            })
+            .catch(err=>{console.log(err);});
+    }
+
+    useEffect(() => {
+        listAllClassroomAPI();
+    });
+
+    //console.log(classroomList);
+
     let pageContent = [];
-    for (let i = 0; i < myClassroom.length; i++) {
-        //console.log(myClassroom[i].name);
-        pageContent.push(<Classroom key={i} classroomName={myClassroom[i].name}></Classroom>)    
+    for (let i = 0; i < classroomList.length; i++) {
+        pageContent.push(<Classroom key={i} classroomName={classroomList[i].name}></Classroom>) 
+        //console.log(classroomList[i].name);
     }
 
     return (

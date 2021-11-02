@@ -6,9 +6,6 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import Modal from '@mui/material/Modal';
-import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
 import AddClassroomModal from '../AddClassroomModal'
 
 const PageHeader = ({addClassOpen, handleAddClassOpen, handleAddClassClose}) => {
