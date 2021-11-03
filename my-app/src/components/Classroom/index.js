@@ -2,7 +2,6 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { grey } from '@mui/material/colors';
-import classroom from '../mock'
 
 const classNameColor = grey[50];
 

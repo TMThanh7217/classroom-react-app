@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import AddClassroomModal from '../AddClassroomModal'
 
-const PageHeader = ({addClassOpen, handleAddClassOpen, handleAddClassClose}) => {
+const PageHeader = ({addClassOpen, handleAddClassOpen, handleAddClassClose, formik}) => {
     return (
         <Box sx={{ flexGrow: 1 }} mb={2}>
             <AppBar position="static" color='transparent'>
@@ -26,7 +26,8 @@ const PageHeader = ({addClassOpen, handleAddClassOpen, handleAddClassClose}) => 
                         My Classroom - 18127217
                     </Typography>
                     <Button variant="outlined" color="primary" onClick={handleAddClassOpen}>Add a class</Button>
-                    <AddClassroomModal addClassOpen={addClassOpen} handleAddClassClose={handleAddClassClose}></AddClassroomModal>
+                    <AddClassroomModal addClassOpen={addClassOpen} handleAddClassClose={handleAddClassClose}
+                        formik={formik}></AddClassroomModal>
                 </Toolbar>
             </AppBar>
         </Box>

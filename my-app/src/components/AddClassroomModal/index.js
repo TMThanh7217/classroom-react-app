@@ -6,7 +6,7 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 
-const style = {
+const modalStyle = {
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -18,7 +18,8 @@ const style = {
     p: 4,
 };
 
-const AddClassroomModal = ({addClassOpen, handleAddClassClose}) => {
+const AddClassroomModal = ({addClassOpen, handleAddClassClose, formik}) => {
+
     return (
             <Modal
                 open={addClassOpen}
@@ -26,15 +27,24 @@ const AddClassroomModal = ({addClassOpen, handleAddClassClose}) => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Add a classroom
-                    </Typography>
-                    <TextField fullWidth id="standard-basic" label="Classroom's name" variant="standard" />
-                    <Stack sx={{ mt: 2 }} direction="row" spacing={2}>
-                        <Button color="primary" variant="contained">Create</Button>
-                        <Button onClick={handleAddClassClose}>Cancel</Button>
-                    </Stack>
+                <Box sx={modalStyle}>
+                    <form onSubmit={formik.handleSubmit}>
+                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                            Add a classroom
+                        </Typography>
+                        <TextField fullWidth label="Classroom's name" variant="standard"
+                            id="classroomName"
+                            name="classroomName"
+                            type="classroomName"
+                            onChange={formik.handleChange}
+                            value={formik.values.classroomName}/>
+                        {formik.errors.classroomName ? <div style={{color:'red'}}>{formik.errors.classroomName}</div> : null}
+ 
+                        <Stack sx={{ mt: 2 }} direction="row" spacing={2}>
+                            <Button type='submit' color="primary" variant="contained">Create</Button>
+                            <Button onClick={handleAddClassClose}>Cancel</Button>
+                        </Stack>
+                    </form>
                 </Box>
             </Modal>
     );
