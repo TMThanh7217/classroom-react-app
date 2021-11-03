@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import PageHeader from '../PageHeader'
 import Classroom from '../Classroom'
 
+const localClassroomsURL = 'http://localhost:9000/classrooms';
+const herokuClassroomsURL = 'https://classroom-rest-api.herokuapp.com/classrooms';
+
 const ClassroomPage = () => {
     const [addClassOpen, setAddClassOpen] = useState(false);
     const [classroomList, setClassroomList] = useState([]);
@@ -15,7 +18,7 @@ const ClassroomPage = () => {
     }
 
     const listAllClassroomAPI = () => {
-        fetch('http://localhost:9000/classrooms')
+        fetch(herokuClassroomsURL)
             .then(res => res.json())
             .then(res => {
                 setClassroomList(res)
