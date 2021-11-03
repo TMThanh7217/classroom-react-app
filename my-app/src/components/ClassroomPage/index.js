@@ -3,10 +3,12 @@ import PageHeader from '../PageHeader'
 import Classroom from '../Classroom'
 import { useFormik } from 'formik';
 
-const localClassroomsURL = 'http://localhost:9000/classrooms';
-const herokuClassroomsURL = 'https://classroom-rest-api.herokuapp.com/classrooms';
-
 const ClassroomPage = () => {
+    
+    const localClassroomsURL = 'http://localhost:9000/classrooms';
+    const herokuClassroomsURL = 'https://classroom-rest-api.herokuapp.com/classrooms';
+    const developmentClassroomURL = herokuClassroomsURL; //change this to change the url
+
     const [addClassOpen, setAddClassOpen] = useState(false);
     const [classroomList, setClassroomList] = useState([]);
 
@@ -19,7 +21,7 @@ const ClassroomPage = () => {
     }
     
     const listAllClassroomAPI = () => {
-        fetch(localClassroomsURL)
+        fetch(developmentClassroomURL)
             .then(res => res.json())
             .then(res => {
                 setClassroomList(res)
@@ -60,7 +62,7 @@ const ClassroomPage = () => {
                 body: JSON.stringify(values)
             };
             
-            fetch(herokuClassroomsURL, requestOptions)
+            fetch(developmentClassroomURL, requestOptions)
                 .then(res => res.json())
                 .then(res => {
                     console.log(res);
